@@ -30,7 +30,7 @@ public class Base {
     }
 
     public static void setBaseUrl(String url) {
-        RtUtil.BASE_URL = url;
+        RtUtil.setBaseUrl(url);
     }
 
 }

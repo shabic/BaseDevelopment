@@ -27,9 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RtUtil {
 
-    public static String BASE_URL = "http://139.129.165.206/ande/index.php/Api/";
+    private static String BASE_URL;
 
     private static OkHttpClient client;
+    private static Retrofit retrofitGson;
 
     static {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -42,14 +43,19 @@ public class RtUtil {
         client = builder.build();
     }
 
-    private static Retrofit retrofitGson = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    public static void setBaseUrl(String url) {
+        BASE_URL = url;
+        retrofitGson = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 
     public static <T> T createGsonService(Class<T> serviceClass) {
+        if (retrofitGson == null)
+            throw new NullPointerException("not set base url");
         return retrofitGson.create(serviceClass);
     }
 

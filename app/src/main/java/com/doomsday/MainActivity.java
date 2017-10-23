@@ -1,5 +1,7 @@
 package com.doomsday;
 
+import com.doomsday.base.adapter.BaseRecyclerViewAdapter;
+import com.doomsday.base.adapter.BaseViewHolder;
 import com.doomsday.base.annotation.ContentView;
 import com.doomsday.base.ui.BaseActivity;
 
