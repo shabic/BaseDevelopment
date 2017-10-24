@@ -6,6 +6,6 @@ package com.doomsday.base.ui;
 
 public interface IPresenter {
 
-    void destory();
+    void destroy();
 
 }

@@ -100,7 +100,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onDestroy() {
         if (useEventBus() && EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().unregister(this);
-        if (mPresenter != null) mPresenter.destory();
+        if (mPresenter != null) mPresenter.destroy();
         mPresenter = null;
         mViews.clear();
         mViews = null;
