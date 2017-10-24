@@ -63,7 +63,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.destory();
+        if (mPresenter != null) mPresenter.destroy();
         mPresenter = null;
         if (useEventBus() && EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().unregister(this);

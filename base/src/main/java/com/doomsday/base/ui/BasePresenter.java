@@ -13,8 +13,7 @@ public class BasePresenter implements IPresenter {
     private ArrayList<Disposable> subs;
 
     @Override
-
-    public void destory() {
+    public void destroy() {
         if (subs == null) return;
         for (Disposable disposable : subs)
             if (!disposable.isDisposed()) disposable.dispose();
