@@ -17,6 +17,7 @@ public class Base {
 
     public static Application instance;
     public static Handler handler;
+    public static boolean showBody;
 
     public static void initBase(Application application) {
         instance = application;
@@ -31,6 +32,11 @@ public class Base {
 
     public static void setBaseUrl(String url) {
         RtUtil.setBaseUrl(url);
+    }
+
+    //网络请求打印日志
+    public static void showRequestBody(boolean showBody) {
+        Base.showBody = showBody;
     }
 
 }

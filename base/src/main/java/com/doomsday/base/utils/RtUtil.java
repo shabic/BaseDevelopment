@@ -76,6 +76,10 @@ public class RtUtil {
                 }
             }
             Response response = chain.proceed(requestBuilder.build());
+
+            if (!Base.showBody)
+                return response;
+
             //用于打印响应body
             BufferedSource bufferedSource = response.body().source();
             bufferedSource.request(Long.MAX_VALUE);
