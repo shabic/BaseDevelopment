@@ -54,10 +54,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                 BaseActivity.this.onClick(view);
             }
         };
-        if (this != null) {
-            if (isDestroyed()) return;
-            initView();
-        }
+        if (isDestroyed()) return;
+        initView();
     }
 
     public void onClick(View view) {
@@ -119,12 +117,13 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && hide) hideInputMethodWindow();
+        if (hide && event.getAction() == MotionEvent.ACTION_DOWN)
+            hideInputMethodWindow();
         return super.onTouchEvent(event);
     }
 
     public void hideInputMethodWindow() {
-        if (getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null && inputMethodManager != null)
+        if (inputMethodManager != null && getCurrentFocus() != null && getCurrentFocus().getWindowToken() != null)
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
