@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.doomsday.base.utils.PresenterUtils;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -82,7 +83,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         if (mViews != null) {
             V view = (V) mViews.get(id);
             if (view == null) {
-                view = (V) findViewById(id);
+                view = findViewById(id);
                 mViews.put(id, view);
             }
             return view;
@@ -109,10 +110,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            Window window = getWindow();
-            window.setNavigationBarColor(Color.BLACK);
-        }
+        QMUIStatusBarHelper.translucent(this);
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
 
     @Override
@@ -130,5 +129,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void initPresenter() {
         mPresenter = PresenterUtils.initPresenter(this);
+        if (mPresenter != null)
+            mPresenter.mView = this;
     }
 }

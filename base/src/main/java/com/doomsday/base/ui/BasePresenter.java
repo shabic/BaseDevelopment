@@ -8,9 +8,11 @@ import io.reactivex.disposables.Disposable;
  * Created by shabi on 1/3/17.
  */
 
-public class BasePresenter implements IPresenter {
+public class BasePresenter<V> implements IPresenter {
 
     private ArrayList<Disposable> subs;
+
+    public V mView;
 
     @Override
     public void destroy() {

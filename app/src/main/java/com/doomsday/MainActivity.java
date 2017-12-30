@@ -7,20 +7,18 @@ import com.doomsday.base.ui.BaseActivity;
 import com.doomsday.base.utils.ToastUtil;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
 
     @Override
     public void initView() {
-
-
     }
 
     @Override
-    protected boolean autoHideInputMethodWindow() {
-        return true;
+    public void xxx() {
+        ToastUtil.show("xxxx");
     }
 
     public void test(View view) {
-        ToastUtil.show("test");
+        mPresenter.test();
     }
 }

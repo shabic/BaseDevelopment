@@ -28,8 +28,8 @@ public class PresenterUtils {
         if (actualTypeArguments == null || actualTypeArguments.length == 0) return null;
         Class<P> pClass = (Class<P>) actualTypeArguments[0];
         try {
-            Constructor<P> constructor = pClass.getConstructor(aClass.getInterfaces()[0]);
-            return   constructor.newInstance(view);
+            Constructor<P> constructor = pClass.getConstructor();
+            return constructor.newInstance();
         } catch (Exception e) {
         }
         return null;
