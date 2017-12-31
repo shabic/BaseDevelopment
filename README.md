@@ -3,11 +3,11 @@ android开发的基础架构（mvp），网络请求等一系列工具类的封�
 
 # Add to your project
     Via Gradle:
-       compile 'com.doomsday.base:base:0.0.1'
+       compile 'com.doomsday.base:base:0.0.4'
 
     Via Maven:
         <dependency>
           <groupId>com.doomsday.base</groupId>
           <artifactId>base</artifactId>
-          <version>0.0.1</version>
+          <version>0.0.4</version>
         </dependency>
