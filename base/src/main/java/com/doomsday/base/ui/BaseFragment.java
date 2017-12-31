@@ -95,5 +95,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void initPresenter() {
         mPresenter = PresenterUtils.initPresenter(this);
+        if (mPresenter != null)
+            mPresenter.mView = this;
     }
 }

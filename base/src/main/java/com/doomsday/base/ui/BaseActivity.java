@@ -127,7 +127,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    public void initPresenter() {
+    public final void initPresenter() {
         mPresenter = PresenterUtils.initPresenter(this);
         if (mPresenter != null)
             mPresenter.mView = this;
