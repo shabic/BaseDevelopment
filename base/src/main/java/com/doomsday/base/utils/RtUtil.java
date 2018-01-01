@@ -3,6 +3,8 @@ package com.doomsday.base.utils;
 import com.doomsday.base.Base;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,7 +88,10 @@ public class RtUtil {
             Buffer buffer = bufferedSource.buffer();
             Logger.i("url: " + request.url() + "\nrequest body: " + list +
                     "\nrequest time: " + (System.currentTimeMillis() - t1));
-            Logger.json(buffer.clone().readUtf8());
+            String bodyStr = buffer.clone().readUtf8();
+            if (Base.netResponseInterceptor != null)
+                Base.netResponseInterceptor.onResponse(bodyStr);
+            Logger.json(bodyStr);
             return response;
         }
     }

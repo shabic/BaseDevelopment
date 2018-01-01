@@ -18,6 +18,7 @@ public class Base {
     public static Application instance;
     public static Handler handler;
     public static boolean showBody;
+    public static NetResponseInterceptor netResponseInterceptor;
 
     public static void initBase(Application application) {
         instance = application;
@@ -37,6 +38,14 @@ public class Base {
     //网络请求打印日志
     public static void showRequestBody(boolean showBody) {
         Base.showBody = showBody;
+    }
+
+    public static void registerNetResponseInterceptor(NetResponseInterceptor netResponseInterceptor) {
+        Base.netResponseInterceptor = netResponseInterceptor;
+    }
+
+    public static interface NetResponseInterceptor {
+        public void onResponse(String body);
     }
 
 }
